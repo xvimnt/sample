@@ -5,12 +5,9 @@ import ProjectBox from "../Elements/ProjectBox";
 import FullButton from "../Buttons/FullButton";
 // Assets
 import ProjectImg1 from "../../assets/img/projects/1.png";
-import ProjectImg2 from "../../assets/img/projects/2.png";
-import ProjectImg3 from "../../assets/img/projects/3.png";
-import ProjectImg4 from "../../assets/img/projects/4.png";
-import ProjectImg5 from "../../assets/img/projects/5.png";
-import ProjectImg6 from "../../assets/img/projects/6.png";
 import AddImage2 from "../../assets/img/add/add2.png";
+// Data
+import projects from "../data/projects.json"
 
 export default function Projects() {
   return (
@@ -26,56 +23,18 @@ export default function Projects() {
             </p>
           </HeaderInfo>
           <div className="row textCenter">
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <ProjectBox
-                img={ProjectImg1}
-                title="Awesome Project"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                action={() => alert("clicked")}
-              />
-            </div>
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <ProjectBox
-                img={ProjectImg2}
-                title="Awesome Project"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                action={() => alert("clicked")}
-              />
-            </div>
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <ProjectBox
-                img={ProjectImg3}
-                title="Awesome Project"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                action={() => alert("clicked")}
-              />
-            </div>
-          </div>
-          <div className="row textCenter">
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <ProjectBox
-                img={ProjectImg4}
-                title="Awesome Project"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                action={() => alert("clicked")}
-              />
-            </div>
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <ProjectBox
-                img={ProjectImg5}
-                title="Awesome Project"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                action={() => alert("clicked")}
-              />
-            </div>
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <ProjectBox
-                img={ProjectImg6}
-                title="Awesome Project"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                action={() => alert("clicked")}
-              />
-            </div>
+            {
+              projects.map((project) => (
+                <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                  <ProjectBox
+                    img={ProjectImg1}
+                    title={project.title}
+                    text={project.text}
+                    action={() => alert(project.action)}
+                  />
+                </div>
+              ))
+            }
           </div>
           <div className="row flexCenter">
             <div style={{ margin: "50px 0", width: "200px" }}>

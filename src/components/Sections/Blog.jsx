@@ -3,6 +3,8 @@ import styled from "styled-components";
 // Components
 import BlogBox from "../Elements/BlogBox";
 import FullButton from "../Buttons/FullButton";
+// data
+import blogs from "../data/blogs.json"
 
 export default function Blog() {
   return (
@@ -18,63 +20,21 @@ export default function Blog() {
             </p>
           </HeaderInfo>
           <div className="row textCenter">
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <BlogBox
-                title="New Office!"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                tag="company"
-                author="Luke Skywalker, 2 days ago"
-                action={() => alert("clicked")}
-              />
-            </div>
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <BlogBox
-                title="New Office!"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                tag="company"
-                author="Luke Skywalker, 2 days ago"
-                action={() => alert("clicked")}
-              />
-            </div>
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <BlogBox
-                title="New Office!"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                tag="company"
-                author="Luke Skywalker, 2 days ago"
-                action={() => alert("clicked")}
-              />
-            </div>
+            {
+              blogs.map((blog) => (
+                <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                  <BlogBox
+                    title={blog.title}
+                    text={blog.text}
+                    tag={blog.tag}
+                    author={blog.author}
+                    action={() => alert(blog.action)}
+                  />
+                </div>
+              ))
+            }
           </div>
-          <div className="row textCenter">
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <BlogBox
-                title="New Office!"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                tag="company"
-                author="Luke Skywalker, 2 days ago"
-                action={() => alert("clicked")}
-              />
-            </div>
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <BlogBox
-                title="New Office!"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                tag="company"
-                author="Luke Skywalker, 2 days ago"
-                action={() => alert("clicked")}
-              />
-            </div>
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-              <BlogBox
-                title="New Office!"
-                text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
-                tag="company"
-                author="Luke Skywalker, 2 days ago"
-                action={() => alert("clicked")}
-              />
-            </div>
-          </div>
+
           <div className="row flexCenter">
             <div style={{ margin: "50px 0", width: "200px" }}>
               <FullButton title="Load More" action={() => alert("clicked")} />
@@ -82,7 +42,7 @@ export default function Blog() {
           </div>
         </div>
       </div>
-      
+
     </Wrapper>
   );
 }

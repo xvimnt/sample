@@ -1,0 +1,15 @@
+[
+    {
+        "title": "New Office!",
+        "text": "Hello world",
+        "tag": "company",
+        "author": "Luke Skywalker",
+        "action": "opened"
+    },{
+        "title": "New Office! 2",
+        "text": "Hello world xvi",
+        "tag": "company",
+        "author": "Luke Skywalker",
+        "action": "closed"
+    }
+]
