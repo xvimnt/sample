@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 // Components
 import ProjectBox from "../Elements/ProjectBox";
@@ -6,10 +6,24 @@ import FullButton from "../Buttons/FullButton";
 // Assets
 import ProjectImg1 from "../../assets/img/projects/1.png";
 import AddImage2 from "../../assets/img/add/add2.png";
-// Data
-import projects from "../data/projects.json"
 
 export default function Projects() {
+  const [projects, setProjects] = useState([]);
+
+  const loadProjectsData = async () => {
+    // Query the API Gateway
+    const response = await fetch("https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/Production/projects")
+    let data = await response.json()
+
+    // Assign the response data to our state variable
+    setProjects(data)
+  }
+
+  useEffect(() => {
+    // Load the menu links data from the API Gateway 
+    loadProjectsData();
+  }, [])
+
   return (
     <Wrapper id="projects">
       <div className="whiteBg">
@@ -25,7 +39,7 @@ export default function Projects() {
           <div className="row textCenter">
             {
               projects.map((project) => (
-                <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div key={project.title} className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                   <ProjectBox
                     img={ProjectImg1}
                     title={project.title}

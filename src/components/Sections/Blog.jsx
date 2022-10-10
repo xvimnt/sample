@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 // Components
 import BlogBox from "../Elements/BlogBox";
 import FullButton from "../Buttons/FullButton";
-// data
-import blogs from "../data/blogs.json"
 
 export default function Blog() {
+  const [blogs, setBlogs] = useState([]);
+
+  const loadBlogsData = async () => {
+    // Query the API Gateway
+    const response = await fetch("https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/Production/blogs")
+    let data = await response.json()
+
+    // Assign the response data to our state variable
+    setBlogs(data)
+  }
+
+  useEffect(() => {
+    // Load the menu links data from the API Gateway 
+    loadBlogsData();
+  }, [])
+
   return (
     <Wrapper id="blog">
       <div className="whiteBg">
@@ -22,7 +36,7 @@ export default function Blog() {
           <div className="row textCenter">
             {
               blogs.map((blog) => (
-                <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div key={blog.title} className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                   <BlogBox
                     title={blog.title}
                     text={blog.text}
