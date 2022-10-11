@@ -6,11 +6,11 @@ import TopMainNavbar from "../components/Nav/TopMainNavbar";
 // Icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
 
   return (
     <>
@@ -29,12 +29,12 @@ export default function Login() {
                       <p class="text-white-50 mb-5">Please enter your login and password!</p>
 
                       <div class="form-outline form-white mb-4">
-                        <input type="email" id="typeEmailX" class="form-control form-control-lg" value={email} onChange={(e) => {setEmail(e.target.value)}}/>
+                        <input type="email" id="typeEmailX" class="form-control form-control-lg" value={email} onChange={(e) => { setEmail(e.target.value) }} />
                         <label class="form-label" for="typeEmailX">Email</label>
                       </div>
 
                       <div class="form-outline form-white mb-4">
-                        <input type="password" id="typePasswordX" class="form-control form-control-lg" value={password} onChange={(e) => {setPassword(e.target.value)}}/>
+                        <input type="password" id="typePasswordX" class="form-control form-control-lg" value={password} onChange={(e) => { setPassword(e.target.value) }} />
                         <label class="form-label" for="typePasswordX">Password</label>
                       </div>
 
@@ -49,7 +49,7 @@ export default function Login() {
                     </div>
 
                     <div>
-                      <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
+                      <p class="mb-0">Don't have an account? <Link to="/signup" class="text-white-50 fw-bold">Sign Up</Link>
                       </p>
                     </div>
 
