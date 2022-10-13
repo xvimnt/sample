@@ -36,18 +36,7 @@ export default function TopMainNavbar() {
                     </LinkScroll>
                     <BurderWrapper className="pointer" onClick={() => toggleSidebar(!sidebarOpen)}>
                         <BurgerIcon />
-                    </BurderWrapper><UlWrapperRight className="flexNullCenter">
-                        <li className="semiBold font15 pointer">
-                            <Link to="/login" style={{ padding: "10px 30px 10px 0" }}>
-                                Log in
-                            </Link>
-                        </li>
-                        <li className="semiBold font15 pointer flexCenter">
-                            <Link to="/signup" className="radius8 lightBg" style={{ padding: "10px 15px" }}>
-                                Get Started
-                            </Link>
-                        </li>
-                    </UlWrapperRight>
+                    </BurderWrapper>
                 </NavInner>
             </Wrapper>
         </>
@@ -76,10 +65,4 @@ const BurderWrapper = styled.button`
     display: block;
   }
 `;
-const UlWrapperRight = styled.ul`
-  @media (max-width: 760px) {
-    display: none;
-  }
-`;
-
 
