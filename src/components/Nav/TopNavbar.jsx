@@ -109,5 +109,3 @@ const UlWrapperRight = styled.ul`
     display: none;
   }
 `;
-
-

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { Link as LinkScroll } from "react-scroll";
 import { Link } from "react-router-dom"
@@ -20,6 +21,7 @@ export default function TopMainNavbar() {
         };
     }, [y]);
 
+    const {cartProductIds} = useSelector(state => state.cart)
 
     return (
         <>
@@ -37,6 +39,21 @@ export default function TopMainNavbar() {
                     <BurderWrapper className="pointer" onClick={() => toggleSidebar(!sidebarOpen)}>
                         <BurgerIcon />
                     </BurderWrapper>
+
+                    <UlWrapperRight className="flexNullCenter">
+
+                        <li className="semiBold font15 pointer flexCenter">
+                            <Link to="/home"  style={{ padding: "10px 15px" }}>
+                                Home
+                            </Link>
+                        </li>
+                        <li className="semiBold font15 pointer flexCenter">
+                            <Link to="/cart" className="radius8 lightBg" style={{ padding: "10px 15px" }}>
+                                <i className="bi bi-cart3" />
+                                <sup className="cart-number">{cartProductIds.length}</sup>
+                            </Link>
+                        </li>
+                    </UlWrapperRight>
                 </NavInner>
             </Wrapper>
         </>
@@ -63,6 +80,11 @@ const BurderWrapper = styled.button`
   display: none;
   @media (max-width: 760px) {
     display: block;
+  }
+`;
+const UlWrapperRight = styled.ul`
+  @media (max-width: 760px) {
+    display: none;
   }
 `;
 

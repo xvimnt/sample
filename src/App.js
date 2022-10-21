@@ -7,6 +7,7 @@ import Landing from "./pages/Landing";
 import Login from "./pages/Login"
 import NotFound from "./pages/NotFound"
 import Home from "./pages/Home"
+import Cart from "./pages/Cart"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </div>
     </BrowserRouter>
