@@ -1,33 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import cartSlice from "../data/cartSlice"
 import { Wrapper } from "../style/components"
 // Sections
 import Footer from "../components/Sections/Footer"
 import TopMainNavbar from "../components/Nav/TopMainNavbar";
+// Data
+import cartSlice from "../data/cartSlice"
+import { fetchAllProducts } from "../data/productSlice"
 
 export default function Cart() {
-    const {cartProductIds} = useSelector((state) => state.cart)
-    const [products, setProducts] = useState([]);
-    
+
+    const state = useSelector(state => state)
+    const { cart, products } = state
+
     const { removeFromCart, clearAllItems } = cartSlice.actions
     const dispatch = useDispatch()
 
-    const loadProductsData = async () => {
-        // Query the API Gateway
-        const response = await fetch("https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/Production/products")
-        let data = await response.json()
-        
-        // Assign the response data to our state variable
-        setProducts(data)
-    }
-    
     useEffect(() => {
-        // Load the menu links data from the API Gateway 
-        loadProductsData();
-    }, [])
-    
-    const cartProductData = products.filter((product) => cartProductIds.includes(product.id))
+        dispatch(fetchAllProducts())
+    }, [dispatch])
+
+    const cartProductData = products.data.filter((product) => cart.cartProductIds.includes(product.id))
 
     return (
         <>
@@ -53,13 +46,13 @@ export default function Cart() {
                         <footer className="text-center">
                             <button className="btn btn-primary" onClick={() => dispatch(clearAllItems())}>CHECKOUT</button>
                         </footer>
-                    </div> )}
+                    </div>)}
 
                     {cartProductData.length < 1 && (<div className="text-center empty-cart">
                         <i className="bi bi-cart3" />
                         <p>Your cart is empty.</p>
                         <p>You have not added any item to your cart.</p>
-                    </div> )}
+                    </div>)}
                 </div>
             </Wrapper>
             <Footer />
