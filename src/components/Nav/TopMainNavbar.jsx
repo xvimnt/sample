@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Link as LinkScroll } from "react-scroll";
 import { Link } from "react-router-dom"
@@ -9,6 +9,8 @@ import Backdrop from "../Elements/Backdrop";
 // Assets
 import LogoIcon from "../../assets/svg/Logo";
 import BurgerIcon from "../../assets/svg/BurgerIcon";
+// Data
+import userSlice from "../../data/userSlice"
 
 export default function TopMainNavbar() {
     const [y, setY] = useState(window.scrollY);
@@ -22,6 +24,8 @@ export default function TopMainNavbar() {
     }, [y]);
 
     const {cartProductIds} = useSelector(state => state.cart)
+    const { logoutUser } = userSlice.actions
+    const dispatch = useDispatch()
 
     return (
         <>
@@ -48,9 +52,15 @@ export default function TopMainNavbar() {
                             </Link>
                         </li>
                         <li className="semiBold font15 pointer flexCenter">
-                            <Link to="/cart" className="radius8 lightBg" style={{ padding: "10px 15px" }}>
+                            <Link to="/cart" style={{ padding: "10px 15px" }}>
                                 <i className="bi bi-cart3" />
-                                <sup className="cart-number">{cartProductIds.length}</sup>
+                                <sup className="cart-number">{cartProductIds.length} Items</sup>
+                            </Link>
+                        </li>
+                        <li className="semiBold font15 pointer flexCenter">
+                            <Link to="/" onClick={() => dispatch(logoutUser())} className="radius8 lightBg" style={{ padding: "10px 15px" }}>
+                                <i className="bi bi-cart3" />
+                                <sup className="cart-number">Logout</sup>
                             </Link>
                         </li>
                     </UlWrapperRight>

@@ -7,6 +7,7 @@ import TopMainNavbar from "../components/Nav/TopMainNavbar";
 // Data
 import cartSlice from "../data/cartSlice"
 import {fetchAllProducts } from "../data/productSlice"
+import ChatBot from "../components/Elements/ChatBot";
 
 export default function Home() {
   const state = useSelector(state => state)
@@ -43,6 +44,7 @@ export default function Home() {
             })}
           </div>
         </div>
+        <ChatBot />
       </Wrapper>
       <Footer />
     </>
