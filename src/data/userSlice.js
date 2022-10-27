@@ -11,6 +11,12 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    loadingUser: (state) => {
+        state.loading = true
+    },
+    doneLoadingUser: (state) => {
+        state.loading = false
+    },
     loginUser: (state, action) => {
         state.userInfo = action.payload
     },

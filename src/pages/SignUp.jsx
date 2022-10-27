@@ -11,10 +11,11 @@ import TopMainNavbar from "../components/Nav/TopMainNavbar";
 // Data
 import userSlice from "../data/userSlice"
 
-export default function Login() {
+export default function SignUp() {
 
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
+  const [confirmPasswordValue, setConfirmPasswordValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const state = useSelector(state => state)
@@ -28,29 +29,32 @@ export default function Login() {
     if (user.userInfo.email_verified) navigate('/home')
   }, [navigate, user.userInfo])
 
-
-  async function signIn() {
+  async function signUp() {
     dispatch(loadingUser())
     try {
-      const user = await Auth.signIn(emailValue, passwordValue);
-      const newUser = {
-        email: user.attributes.email,
-        username: user.username,
-        email_verified: user.attributes.email_verified,
-        jwt: user.signInUserSession.accessToken.jwtToken,
+        const { user } = await Auth.signUp({
+            emailValue,
+            passwordValue,
+            attributes: {
+                emailValue,          // optional
+                // other custom attributes 
+            },
+            autoSignIn: { // optional - enables auto sign in after user is confirmed
+                enabled: true,
+            }
+        });
+        console.log(user);
+      } catch (error) {
+        setErrorMessage(error.toString())
       }
-      dispatch(loginUser(newUser))
-    } catch (error) {
-      setErrorMessage(error.toString())
-    }
-    dispatch(doneLoadingUser())
-  }
+      dispatch(doneLoadingUser())
+}
 
   return (
     <>
       <TopMainNavbar />
       <Wrapper className="mt-5 mb-3">
-        <h1>Log In</h1>
+        <h1>Registrate</h1>
         {errorMessage && <div className="fail">{errorMessage}</div>}
         {user.loading && <div className="fail">Loading...</div>}
         <input
@@ -64,13 +68,18 @@ export default function Login() {
           value={passwordValue}
           onChange={e => setPasswordValue(e.target.value)}
           placeholder="password" />
+          <input
+          className="form-control"
+          type="password"
+            value={confirmPasswordValue}
+            onChange={e => setConfirmPasswordValue(e.target.value)}
+            placeholder="password" />
         <hr />
         {!user.loading && (<button
         className="btn btn-success"
         disabled={!emailValue || !passwordValue}
-          onClick={signIn}>Log In</button> )}
-        <button onClick={() => navigate('/forgot-password')}>Olvidaste tu clave?</button>
-        <button onClick={() => navigate('/signup')}>Aun no tienes una cuenta? Registrate</button>
+          onClick={signUp}>Registrarse</button> )}
+        <button onClick={() => navigate('/login')}>Ya tienes una cuenta? Sign In</button>
       </Wrapper>
       <Footer />
     </>

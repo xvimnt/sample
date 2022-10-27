@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Link as LinkScroll } from "react-scroll";
+import { Auth } from 'aws-amplify';
 import { Link } from "react-router-dom"
 // Components
 import Sidebar from "../Nav/Sidebar";
@@ -23,9 +24,21 @@ export default function TopMainNavbar() {
         };
     }, [y]);
 
-    const {cartProductIds} = useSelector(state => state.cart)
+    const state = useSelector(state => state)
+    const { user, cart } = state
+
+    const {cartProductIds} = cart
     const { logoutUser } = userSlice.actions
     const dispatch = useDispatch()
+
+    async function signOut() {
+        try {
+            await Auth.signOut();
+            dispatch(logoutUser())
+        } catch (error) {
+            console.log('error signing out: ', error);
+        }
+    }
 
     return (
         <>
@@ -43,8 +56,8 @@ export default function TopMainNavbar() {
                     <BurderWrapper className="pointer" onClick={() => toggleSidebar(!sidebarOpen)}>
                         <BurgerIcon />
                     </BurderWrapper>
-
-                    <UlWrapperRight className="flexNullCenter">
+                    {user.userInfo.email_verified && 
+                    (<UlWrapperRight className="flexNullCenter">
 
                         <li className="semiBold font15 pointer flexCenter">
                             <Link to="/home"  style={{ padding: "10px 15px" }}>
@@ -58,12 +71,12 @@ export default function TopMainNavbar() {
                             </Link>
                         </li>
                         <li className="semiBold font15 pointer flexCenter">
-                            <Link to="/" onClick={() => dispatch(logoutUser())} className="radius8 lightBg" style={{ padding: "10px 15px" }}>
+                            <Link to="/" onClick={signOut} className="radius8 lightBg" style={{ padding: "10px 15px" }}>
                                 <i className="bi bi-cart3" />
                                 <sup className="cart-number">Logout</sup>
                             </Link>
                         </li>
-                    </UlWrapperRight>
+                    </UlWrapperRight>)}
                 </NavInner>
             </Wrapper>
         </>

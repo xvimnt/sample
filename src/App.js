@@ -10,13 +10,16 @@ import Login from "./pages/Login"
 import NotFound from "./pages/NotFound"
 import Home from "./pages/Home"
 import Cart from "./pages/Cart"
+import SignUp from "./pages/SignUp";
 
 Amplify.addPluggable(new AWSLexV2Provider());
 
 Amplify.configure({
   Auth: {
-    identityPoolId: 'us-east-1:a7cbadba-3796-41d3-a5c7-7b365de5cd63',
+    identityPoolId: 'us-east-1:4099b113-7a24-4e37-8974-8de2d6d5310e',
     region: "us-east-1",
+    userPoolId: "us-east-1_BPvfBtzpQ", // Please change this value.
+    userPoolWebClientId: "1u6j86bkbgs0uboa6filjnvmcj", // Please change this value.
   },
   Interactions: {
     bots: {
@@ -41,6 +44,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/home" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
