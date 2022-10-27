@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 // Amplify Auth
 import { Auth } from 'aws-amplify';
-import '@aws-amplify/ui-react/styles.css';
 // Sections
 import Footer from "../components/Sections/Footer"
 import TopMainNavbar from "../components/Nav/TopMainNavbar";

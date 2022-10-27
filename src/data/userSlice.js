@@ -11,6 +11,9 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    confirmUser: (state) => {
+        state.userInfo.email_verified = true
+    },
     loadingUser: (state) => {
         state.loading = true
     },

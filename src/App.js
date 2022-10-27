@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound"
 import Home from "./pages/Home"
 import Cart from "./pages/Cart"
 import SignUp from "./pages/SignUp";
+import Verify from "./pages/Verify";
 
 Amplify.addPluggable(new AWSLexV2Provider());
 
@@ -47,6 +48,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/home" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/verify" element={<Verify />} />
         </Routes>
       </div>
     </BrowserRouter>
