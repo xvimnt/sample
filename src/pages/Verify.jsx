@@ -59,7 +59,7 @@ export default function Verify() {
                     value={code}
                     onChange={e => setCode(e.target.value)}
                     type="number"
-                    placeholder="12345" />
+                    placeholder="123456" />
                 <hr />
                 {!user.loading && (<button
                     className="btn btn-success"
