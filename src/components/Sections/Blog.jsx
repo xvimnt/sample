@@ -9,7 +9,7 @@ export default function Blog() {
 
   const loadBlogsData = async () => {
     // Query the API Gateway
-    const response = await fetch("https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/Production/blogs")
+    const response = await fetch("https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/Production/getBlogs")
     let data = await response.json()
 
     // Assign the response data to our state variable

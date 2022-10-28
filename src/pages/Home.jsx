@@ -30,8 +30,7 @@ export default function Home() {
               return (
                 <div className="mb-2 col-md-4" key={product.id}>
                   <div className="card h-100">
-                    <img className="h-100 w-100 p-2 center-block" src={product.imageUrl} alt={product.name} />
-
+                    <img className="h-50 w-100 p-2 center-block" src={product.imageUrl} alt={product.name} />
                     <div className="card-body text-center">
                       <h5 className="card-title">{product.name}</h5>
                       <p className="card-text">${product.price}</p>

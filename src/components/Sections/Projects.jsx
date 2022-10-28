@@ -12,7 +12,7 @@ export default function Projects() {
 
   const loadProjectsData = async () => {
     // Query the API Gateway
-    const response = await fetch("https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/Production/projects")
+    const response = await fetch("https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/Production/getProjects")
     let data = await response.json()
 
     // Assign the response data to our state variable
