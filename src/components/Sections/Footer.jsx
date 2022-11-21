@@ -23,7 +23,7 @@ export default function Contact() {
               </Link>
             </LinkScroll>
             <StyleP className="whiteColor font13">
-              © {getCurrentYear()} - <span className="purpleColor font13">Fanatic</span> All Right Reserved
+              © {getCurrentYear()} - <span className="purpleColor font13">Milky Ware</span> All Right Reserved
             </StyleP>
           </InnerWrapper>
         </div>

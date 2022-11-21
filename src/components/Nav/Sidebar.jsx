@@ -108,7 +108,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
       </UlStyle>
       <UlStyle className="flexSpaceCenter">
         <li className="semiBold font15 pointer flexCenter">
-          <Link href="/login" className="radius8 lightBg" style={{ padding: "10px 15px" }}>
+          <Link to="/login" className="radius8 lightBg" style={{ padding: "10px 15px" }}>
             Get Started
           </Link>
         </li>

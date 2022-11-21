@@ -1,49 +1,123 @@
-import React, {  useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { Wrapper } from "../style/components"
 // Sections
 import Footer from "../components/Sections/Footer"
 import TopMainNavbar from "../components/Nav/TopMainNavbar";
-// Data
-import cartSlice from "../data/cartSlice"
-import {fetchAllProducts } from "../data/productSlice"
-import ChatBot from "../components/Elements/ChatBot";
+import MainSidebar from "../components/Nav/MainSidebar";
 
 export default function Home() {
-  const state = useSelector(state => state)
-  const {cart, products} = state
-
-  const {addToCart, removeFromCart } = cartSlice.actions
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(fetchAllProducts())
-  }, [dispatch])
 
   return (
     <>
       <TopMainNavbar />
+      <MainSidebar />
       <Wrapper>
-        <div className="container product-catalogue">
+        <div className="page-breadcrumb">
+          <div className="row align-items-center">
+            <div className="col-6">
+              <nav aria-label="breadcrumb">
+              </nav>
+              <h1 className="mb-0 fw-bold">Dashboard</h1>
+            </div>
+          </div>
+        </div>
+        <div className="container-fluid">
           <div className="row">
-            {products.data.map((product) => {
-              return (
-                <div className="mb-2 col-md-4" key={product.id}>
-                  <div className="card h-100">
-                    <img className="h-50 w-100 p-2 center-block" src={product.imageUrl} alt={product.name} />
-                    <div className="card-body text-center">
-                      <h5 className="card-title">{product.name}</h5>
-                      <p className="card-text">${product.price}</p>
-                        {!cart.cartProductIds.includes(product.id) && (<button className="btn btn-primary" onClick={() => dispatch(addToCart(product.id))}>Add to cart</button>)}
-                        {cart.cartProductIds.includes(product.id) && (<button className="btn btn-danger" onClick={() => dispatch(removeFromCart(product.id))}>Remove from cart</button>)}
+            <div className="col-lg-8">
+              <div className="card">
+                <div className="card-body">
+                  <div className="d-md-flex align-items-center">
+                    <div>
+                      <h4 className="card-title">Sales Summary</h4>
+                      <h6 className="card-subtitle">Ample admin Vs Pixel admin</h6>
+                    </div>
+                    <div className="ms-auto d-flex no-block align-items-center">
+                      <ul className="list-inline dl d-flex align-items-center m-r-15 m-b-0">
+                        <li className="list-inline-item d-flex align-items-center text-info"><i className="fa fa-circle font-10 me-1"></i> Ample
+                        </li>
+                        <li className="list-inline-item d-flex align-items-center text-primary"><i className="fa fa-circle font-10 me-1"></i> Pixel
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="amp-pxl mt-4">
+                    <div className="chartist-tooltip"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="card">
+                <div className="card-body">
+                  <h4 className="card-title">Weekly Stats</h4>
+                  <h6 className="card-subtitle">Average sales</h6>
+                  <div className="mt-5 pb-3 d-flex align-items-center">
+                    <span className="btn btn-primary btn-circle d-flex align-items-center">
+                      <i className="mdi mdi-cart-outline fs-4" ></i>
+                    </span>
+                    <div className="ms-3">
+                      <h5 className="mb-0 fw-bold">Top Sales</h5>
+                      <span className="text-muted fs-6">Johnathan Doe</span>
+                    </div>
+                    <div className="ms-auto">
+                      <span className="badge bg-light text-muted">+68%</span>
+                    </div>
+                  </div>
+                  <div className="py-3 d-flex align-items-center">
+                    <span className="btn btn-warning btn-circle d-flex align-items-center">
+                      <i className="mdi mdi-star-circle fs-4" ></i>
+                    </span>
+                    <div className="ms-3">
+                      <h5 className="mb-0 fw-bold">Best Seller</h5>
+                      <span className="text-muted fs-6">MaterialPro Admin</span>
+                    </div>
+                    <div className="ms-auto">
+                      <span className="badge bg-light text-muted">+68%</span>
+                    </div>
+                  </div>
+                  <div className="py-3 d-flex align-items-center">
+                    <span className="btn btn-success btn-circle d-flex align-items-center">
+                      <i className="mdi mdi-comment-multiple-outline text-white fs-4" ></i>
+                    </span>
+                    <div className="ms-3">
+                      <h5 className="mb-0 fw-bold">Most Commented</h5>
+                      <span className="text-muted fs-6">Ample Admin</span>
+                    </div>
+                    <div className="ms-auto">
+                      <span className="badge bg-light text-muted">+68%</span>
+                    </div>
+                  </div>
+                  <div className="py-3 d-flex align-items-center">
+                    <span className="btn btn-info btn-circle d-flex align-items-center">
+                      <i className="mdi mdi-diamond fs-4 text-white" ></i>
+                    </span>
+                    <div className="ms-3">
+                      <h5 className="mb-0 fw-bold">Top Budgets</h5>
+                      <span className="text-muted fs-6">Sunil Joshi</span>
+                    </div>
+                    <div className="ms-auto">
+                      <span className="badge bg-light text-muted">+15%</span>
+                    </div>
+                  </div>
+
+                  <div className="pt-3 d-flex align-items-center">
+                    <span className="btn btn-danger btn-circle d-flex align-items-center">
+                      <i className="mdi mdi-content-duplicate fs-4 text-white" ></i>
+                    </span>
+                    <div className="ms-3">
+                      <h5 className="mb-0 fw-bold">Best Designer</h5>
+                      <span className="text-muted fs-6">Nirav Joshi</span>
+                    </div>
+                    <div className="ms-auto">
+                      <span className="badge bg-light text-muted">+90%</span>
                     </div>
                   </div>
                 </div>
-              )
-            })}
+              </div>
+            </div>
           </div>
+
         </div>
-        <ChatBot />
       </Wrapper>
       <Footer />
     </>
