@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Wrapper } from "../style/components"
 // Sections
 import Footer from "../components/Sections/Footer"
@@ -7,11 +7,13 @@ import MainSidebar from "../components/Nav/MainSidebar";
 
 export default function Home() {
 
+  const [sidebarOpen, toggleSidebar] = useState(false);
+
   return (
     <>
       <TopMainNavbar />
-      <MainSidebar />
-      <Wrapper>
+      <MainSidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar}/>
+      <Wrapper paddingLeft="100px">
         <div className="page-breadcrumb">
           <div className="row align-items-center">
             <div className="col-6">
