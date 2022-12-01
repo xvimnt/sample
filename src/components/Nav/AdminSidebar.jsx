@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom"
 // Assets
-import CloseIcon from "../../assets/svg/CloseIcon";
+import {MdMenu} from "react-icons/md";
 import LogoIcon from "../../assets/svg/Logo";
 
 export default function AdminSidebar({ sidebarOpen, toggleSidebar }) {
@@ -16,7 +16,7 @@ export default function AdminSidebar({ sidebarOpen, toggleSidebar }) {
           </h1>
         </div>
         <CloseBtn onClick={() => toggleSidebar(!sidebarOpen)} className="animate pointer">
-          <CloseIcon />
+          <MdMenu />
         </CloseBtn>
       </SidebarHeader>
 
@@ -68,9 +68,9 @@ const SidebarHeader = styled.div`
 `;
 const CloseBtn = styled.button`
   border: 0px;
-  outline: none;
   background-color: transparent;
   padding: 10px;
+  color: white;
 `;
 const UlStyle = styled.ul`
   padding: 40px;
