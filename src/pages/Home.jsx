@@ -3,7 +3,7 @@ import { Wrapper } from "../style/components"
 // Sections
 import Footer from "../components/Sections/Footer"
 import TopMainNavbar from "../components/Nav/TopMainNavbar";
-import MainSidebar from "../components/Nav/MainSidebar";
+import AdminSidebar from "../components/Nav/AdminSidebar";
 
 export default function Home() {
 
@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <TopMainNavbar />
-      <MainSidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar}/>
+      <AdminSidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar}/>
       <Wrapper paddingLeft="100px">
         <div className="page-breadcrumb">
           <div className="row align-items-center">

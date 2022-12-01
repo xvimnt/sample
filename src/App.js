@@ -12,7 +12,7 @@ import Home from "./pages/Home"
 import Cart from "./pages/Cart"
 import SignUp from "./pages/SignUp";
 import Verify from "./pages/Verify";
-import { Menu } from "@aws-amplify/ui-react";
+import Catalogue from "./pages/Catalogue";
 import Products from "./pages/Products";
 
 Amplify.addPluggable(new AWSLexV2Provider());
@@ -49,8 +49,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/menu" element={<Products />} />
+          <Route path="/menu" element={<Catalogue />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/products" element={<Products />} />
           <Route path="/verify" element={<Verify />} />
         </Routes>
       </div>

@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-scroll";
+import { Link } from "react-router-dom"
 // Assets
 import CloseIcon from "../../assets/svg/CloseIcon";
 import LogoIcon from "../../assets/svg/Logo";
 
-export default function MainSidebar({ sidebarOpen, toggleSidebar }) {
+export default function AdminSidebar({ sidebarOpen, toggleSidebar }) {
   return (
     <Wrapper className="animate darkBg" sidebarOpen={sidebarOpen}>
       <SidebarHeader className="flexSpaceCenter">
@@ -28,8 +28,6 @@ export default function MainSidebar({ sidebarOpen, toggleSidebar }) {
             className="whiteColor"
             style={{ padding: "10px 15px" }}
             to="/home"
-            spy={true}
-            smooth={true}
             offset={-60}
           >
             Dashboard
@@ -41,9 +39,7 @@ export default function MainSidebar({ sidebarOpen, toggleSidebar }) {
             activeClass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
-            to="services"
-            spy={true}
-            smooth={true}
+            to="/products"
             offset={-60}
           >
             Products
