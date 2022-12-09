@@ -25,13 +25,22 @@ export default function Products() {
       // columns in the table that'll be showed
       const titles = ['id','name', 'detail', 'price']
 
+      // fields 
+      // label control 
+      const fields = [
+        ['name',<input className="form-control" type='text' />],
+        ['detail',<textarea className="form-control"></textarea>],
+        ['imageUrl',<img></img>],
+        ['price',<input className="form-control" type='number' />],
+      ]
+
   return (
     
     <>
       <TopMainNavbar />
       <AdminSidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar}/>
       <Wrapper>
-        <Table tableName="Products" list={products} titles={titles}/>
+        <Table tableName="Products" list={products} titles={titles} fields={fields}/>
       </Wrapper>
       <Footer />
     </>
