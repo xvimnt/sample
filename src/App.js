@@ -13,7 +13,7 @@ import Cart from "./pages/Cart"
 import SignUp from "./pages/SignUp";
 import Verify from "./pages/Verify";
 import Catalogue from "./pages/Catalogue";
-import Products from "./pages/Products";
+import Products from "./pages/cruds/Products";
 
 Amplify.addPluggable(new AWSLexV2Provider());
 

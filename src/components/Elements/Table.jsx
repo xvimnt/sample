@@ -6,14 +6,21 @@ import Modal from "./Modal";
 
 export default function Table({ tableName, list, titles, fields }) {
 
-    const [loading, setLoading] = useState(true)
-    const [selectedItem, setSelectedItem] = useState()
+    const [loading, setLoading] = useState(false)
 
-    useEffect(() => {
-        if (list.data) {
-            setLoading(false)
-        }
-    }, [list.data])
+    const editItem = (item) => {
+        fields.map(arr => {
+            const [column, , , , setState] = arr;
+            setState(item[column])
+        })
+    }
+    const addItem = () => {
+        fields.map(arr => {
+            const [column, , , , setState] = arr;
+            setState('')
+        })
+    }
+    
     return (
         <>
             <div className="container">
@@ -29,15 +36,17 @@ export default function Table({ tableName, list, titles, fields }) {
                                     className="btn btn-primary"
                                     data-bs-toggle="modal"
                                     data-bs-target="#addNew"
+                                    onClick={addItem}
                                 ><MdAddBox />Add New {tableName}</button>
                                 <Modal id='addNew' title={'Agrega un nuevo producto'}>
                                     <form>
                                         {
                                             fields.map(arr => {
+                                                const [, label, control] = arr;
                                                 return (
-                                                    <div class="mb-3">
-                                                        <label className="form-label">{arr[0]}:</label>
-                                                        {arr[1]}
+                                                    <div className="mb-3">
+                                                        <label className="form-label">{label}:</label>
+                                                        {control()}
                                                     </div>
                                                 )
                                             })
@@ -49,15 +58,16 @@ export default function Table({ tableName, list, titles, fields }) {
                         </div>
                     </div>
                     <Modal id="edit" title='Edicion'>
-                        { selectedItem &&
-                            Object.keys(selectedItem).forEach(key => {
+                        { 
+                            fields.map(arr => {
+                                const [, label, control] = arr;
                                 return (
-                                    <div key={key}>
-                                        <label htmlFor="">{key}</label>
-                                        <input type="text" value={selectedItem[key]} />
+                                    <div className="mb-3">
+                                        <label className="form-label">{label}:</label>
+                                        {control()}
                                     </div>
                                 )
-                              })
+                            })
                         }
                     </Modal>
                     {loading ? (
@@ -95,7 +105,7 @@ export default function Table({ tableName, list, titles, fields }) {
                                                     className="btn btn-primary"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#edit"
-                                                    
+                                                    onClick={() => editItem(item)}
                                                 ><MdModeEdit /></button>
                                                 <a href="modal" className="btn btn-danger" data-toggle="modal"><MdDeleteForever /></a>
                                             </td>
