@@ -53,7 +53,7 @@ export default function Products() {
     )
   }
   
-  // column label control states
+  // column label control state setState
   const fields = [
     ['name', 'Nombre', nameControl, name, setName],
     ['detail', 'Detalle', detailControl, detail, setDetail],
@@ -66,7 +66,7 @@ export default function Products() {
       <TopMainNavbar />
       <AdminSidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       <Wrapper>
-        <Table tableName="Products" list={products} titles={titles} fields={fields} />
+        <Table tableName="Productos" rows={products} titles={titles} fields={fields} />
       </Wrapper>
       <Footer />
     </>

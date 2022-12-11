@@ -32,10 +32,10 @@ export default function Modal({id, children, title}) {
                                 className="btn btn-secondary"
                                 data-bs-dismiss="modal"
                             >
-                                Close
+                                Cerrar
                             </button>
                             <button type="button" className="btn btn-primary">
-                                Save changes
+                                Guardar Cambios
                             </button>
                         </div>
                     </div>
