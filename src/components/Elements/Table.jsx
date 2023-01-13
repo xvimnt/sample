@@ -4,8 +4,8 @@ import ReactLoading from 'react-loading';
 import { MdAddBox, MdDeleteForever, MdModeEdit } from 'react-icons/md'
 import Modal from "./Modal";
 import Checkbox from "../Buttons/Checkbox"
-
-export default function Table({ tableName, rows, titles, fields }) {
+import axios from "axios";
+export default function Table({ tableName, rows, fields }) {
     // Checkbox states
     const [isCheckAll, setIsCheckAll] = useState(false);
     const [isCheck, setIsCheck] = useState([]);
@@ -35,17 +35,25 @@ export default function Table({ tableName, rows, titles, fields }) {
     const [loading, setLoading] = useState(false)
 
     // Handle the click when editing or adding an item
-    const editItem = (item) => {
-        fields.map(arr => {
-            const [column, , , , setState] = arr;
-            setState(item[column])
+    const beforeEdit = (item) => {
+        fields.map(obj => {
+            obj.setState(item[obj.column])
         })
     }
-    const addItem = () => {
-        fields.map(arr => {
-            const [column, , , , setState] = arr;
-            setState('')
+    const beforeAdd = () => {
+        fields.map(obj => {
+            obj.setState('')
         })
+    }
+
+    // Creating the item that is about to be added or edited
+    const item = []
+
+    // Function to put an item in the db
+    const addItem = () => {
+        axios.put('https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/Production/products', item).then(res => {
+        window.location.reload(false);
+      }).then(err => console.error(err));
     }
 
     return (
@@ -63,17 +71,16 @@ export default function Table({ tableName, rows, titles, fields }) {
                                     className="btn btn-primary"
                                     data-bs-toggle="modal"
                                     data-bs-target="#addNew"
-                                    onClick={addItem}
+                                    onClick={beforeAdd}
                                 ><MdAddBox />&nbsp;Agregar mas {tableName}</button>
-                                <Modal id='addNew' title={'Agregar mas ' + tableName}>
-                                    <form>
+                                <Modal id='addNew' title={'Agregar mas ' + tableName} submit={addItem}>
+                                    <form> 
                                         {
-                                            fields.map(arr => {
-                                                const [, label, control] = arr;
+                                            fields.map(obj => {
                                                 return (
                                                     <div className="mb-3">
-                                                        <label className="form-label">{label}:</label>
-                                                        {control()}
+                                                        <label className="form-label">{obj.title}:</label>
+                                                        {obj.control()}
                                                     </div>
                                                 )
                                             })
@@ -84,14 +91,13 @@ export default function Table({ tableName, rows, titles, fields }) {
                             </div>
                         </div>
                     </div>
-                    <Modal id="edit" title='Edicion'>
+                    <Modal id="edit" title={'Edicion de ' + tableName}>
                         {
-                            fields.map(arr => {
-                                const [, label, control] = arr;
+                            fields.map(obj => {
                                 return (
                                     <div className="mb-3">
-                                        <label className="form-label">{label}:</label>
-                                        {control()}
+                                        <label className="form-label">{obj.title}:</label>
+                                        {obj.control()}
                                     </div>
                                 )
                             })
@@ -117,7 +123,7 @@ export default function Table({ tableName, rows, titles, fields }) {
                                             <label htmlFor="selectAll"></label>
                                         </span>
                                     </th>
-                                    {titles.map(title => <td key={title}>{title}</td>)}
+                                    {fields.map(obj => obj.showTable && <td key={obj.title}>{obj.title}</td>)}
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -136,14 +142,14 @@ export default function Table({ tableName, rows, titles, fields }) {
                                                     />
                                                 </span>
                                             </td>
-                                            {titles.map(title => <td>{item[title]}</td>)}
+                                            {fields.map(obj => obj.showTable && <td>{item[obj.column]}</td>)}
                                             <td>
                                                 <button
                                                     type="button"
                                                     className="btn btn-primary"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#edit"
-                                                    onClick={() => editItem(item)}
+                                                    onClick={() => beforeEdit(item)}
                                                 ><MdModeEdit /></button>
                                                 <a href="modal" className="btn btn-danger" data-toggle="modal"><MdDeleteForever /></a>
                                             </td>

@@ -24,7 +24,7 @@ export default function AdminSidebar({ sidebarOpen, toggleSidebar }) {
         <li className="semiBold font15 pointer">
           <Link
             onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
+            activeclass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
             to="/home"
@@ -36,7 +36,7 @@ export default function AdminSidebar({ sidebarOpen, toggleSidebar }) {
         <li className="semiBold font15 pointer">
           <Link
             onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
+            activeclass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
             to="/products"

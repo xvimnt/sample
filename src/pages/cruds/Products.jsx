@@ -22,9 +22,6 @@ export default function Products() {
     dispatch(fetchAllProducts())
   }, [dispatch])
 
-  // columns in the table that'll be showed
-  const titles = ['id', 'name', 'detail', 'price']
-
   // States 
   const [name, setName] = useState('')
   const [detail, setDetail] = useState('')
@@ -52,13 +49,32 @@ export default function Products() {
       <input className="form-control" type='number' value={price} onChange={(e) => setPrice(e.target.value)} />
     )
   }
-  
-  // column label control state setState
+
   const fields = [
-    ['name', 'Nombre', nameControl, name, setName],
-    ['detail', 'Detalle', detailControl, detail, setDetail],
-    // ['imageUrl', 'Imagen', imageControl, image, setImage],
-    ['price', 'Precio', priceControl, price, setPrice],
+    {
+      column: 'name',
+      title: 'Nombre',
+      control: nameControl,
+      state: name,
+      setState: setName,
+      showTable: true,
+    },
+    {
+      column: 'detail',
+      title: 'Detalle',
+      control: detailControl,
+      state: detail,
+      setState: setDetail,
+      showTable: true,
+    },
+    {
+      column: 'price',
+      title: 'Precio',
+      control: priceControl,
+      state: price,
+      setState: setPrice,
+      showTable: true,
+    },
   ]
 
   return (
@@ -66,7 +82,7 @@ export default function Products() {
       <TopMainNavbar />
       <AdminSidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       <Wrapper>
-        <Table tableName="Productos" rows={products} titles={titles} fields={fields} />
+        <Table tableName="Productos" rows={products} fields={fields} />
       </Wrapper>
       <Footer />
     </>

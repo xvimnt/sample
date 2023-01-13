@@ -24,7 +24,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
         <li className="semiBold font15 pointer">
           <Link
             onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
+            activeclass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
             to="home"
@@ -38,7 +38,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
         <li className="semiBold font15 pointer">
           <Link
             onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
+            activeclass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
             to="services"
@@ -52,7 +52,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
         <li className="semiBold font15 pointer">
           <Link
             onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
+            activeclass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
             to="projects"
@@ -66,7 +66,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
         <li className="semiBold font15 pointer">
           <Link
             onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
+            activeclass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
             to="blog"
@@ -80,7 +80,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
         <li className="semiBold font15 pointer">
           <Link
             onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
+            activeclass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
             to="pricing"
@@ -94,7 +94,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
         <li className="semiBold font15 pointer">
           <Link
             onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
+            activeclass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
             to="contact"
