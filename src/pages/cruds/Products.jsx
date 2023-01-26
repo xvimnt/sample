@@ -22,12 +22,18 @@ export default function Products() {
   }, [dispatch])
 
   // States 
+  const [id, setId] = useState('')
   const [name, setName] = useState('')
   const [detail, setDetail] = useState('')
   const [image, setImage] = useState('')
   const [price, setPrice] = useState('')
 
   // Controls
+  const idControl = () => {
+    return (
+      <input className="form-control" type='number' value={id} onChange={(e) => setId(e.target.value)} />
+    )
+  }
   const nameControl = () => {
     return (
       <input className="form-control" type='text' value={name} onChange={(e) => setName(e.target.value)} />
@@ -50,6 +56,14 @@ export default function Products() {
   }
 
   const fields = [
+    {
+      column: 'id',
+      title: 'ID',
+      control: idControl,
+      state: id,
+      setState: setId,
+      showTable: true,
+    },
     {
       column: 'name',
       title: 'Nombre',

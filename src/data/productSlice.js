@@ -18,11 +18,17 @@ export const getAllProducts = createAsyncThunk("fetch-all-products", async () =>
 
 export const addProduct = createAsyncThunk("add-products", async (item) => {
 
+    const newObject = {}
+
+    item.forEach(element => {
+        newObject[element.column] = element.state
+    });
+
     const response = await axios({
         url: "/products",
         baseURL: "https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/Production",
         method: "put",
-        body: item,
+        data: newObject,
         headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
@@ -38,6 +44,7 @@ const productSlice = createSlice({
     reducers: {},
     extraReducers: builder => {
         builder.addCase(getAllProducts.fulfilled, (state, action) => {
+            // Fills the initial table
             state.data = action.payload
             state.fetchStatus = "success"
         }).addCase(getAllProducts.pending, (state) => {
@@ -45,12 +52,13 @@ const productSlice = createSlice({
         }).addCase(getAllProducts.rejected, (state) => {
             state.fetchStatus = "error"
         }).addCase(addProduct.fulfilled, (state, action) => {
-            const item = {}
-            action.payload.forEach(element => {
-                item[element.column] = element.state
+            // Adds the new element to the existing table
+            const newObject = {}
+            action.meta.arg.forEach(element => {
+                newObject[element.column] = element.state
                 element.setState('')
             });
-            state.data = [...state.data, item]
+            state.data = [...state.data, newObject]
             state.fetchStatus = "success"
         }).addCase(addProduct.pending, (state) => {
             state.fetchStatus = "loading"
