@@ -4,8 +4,8 @@ import ReactLoading from 'react-loading';
 import { MdAddBox, MdDeleteForever, MdModeEdit } from 'react-icons/md'
 import Modal from "./Modal";
 import Checkbox from "../Buttons/Checkbox"
-import axios from "axios";
-export default function Table({ tableName, rows, fields }) {
+
+export default function Table({ tableName, rows, fields, addItem }) {
     // Checkbox states
     const [isCheckAll, setIsCheckAll] = useState(false);
     const [isCheck, setIsCheck] = useState([]);
@@ -44,16 +44,6 @@ export default function Table({ tableName, rows, fields }) {
         fields.map(obj => {
             obj.setState('')
         })
-    }
-
-    // Creating the item that is about to be added or edited
-    const item = []
-
-    // Function to put an item in the db
-    const addItem = () => {
-        axios.put('https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/Production/products', item).then(res => {
-        window.location.reload(false);
-      }).then(err => console.error(err));
     }
 
     return (

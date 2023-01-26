@@ -6,7 +6,7 @@ import Footer from "../components/Sections/Footer"
 import TopMainNavbar from "../components/Nav/TopMainNavbar";
 // Data
 import cartSlice from "../data/cartSlice"
-import { fetchAllProducts } from "../data/productSlice"
+import { getAllProducts } from "../data/productSlice"
 
 export default function Cart() {
 
@@ -17,7 +17,7 @@ export default function Cart() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(fetchAllProducts())
+        dispatch(getAllProducts())
     }, [dispatch])
 
     const cartProductData = products.data.filter((product) => cart.cartProductIds.includes(product.id))

@@ -46,7 +46,6 @@ export default function TopMainNavbar() {
             {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
             <Wrapper className="flexCenter animate whiteBg" style={y > 100 ? { height: "60px" } : { height: "80px" }}>
                 <NavInner className="container flexSpaceCenter">
-
                     <LinkScroll className="pointer flexNullCenter" to="home" smooth={true}>
                         <LogoIcon />
                         <Link to="/" style={{ marginLeft: "15px" }} className="font20 extraBold">
@@ -58,7 +57,6 @@ export default function TopMainNavbar() {
                     </BurderWrapper>
                     {user.userInfo.email_verified && 
                     (<UlWrapperRight className="flexNullCenter">
-
                         <li className="semiBold font15 pointer flexCenter">
                             <Link to="/home"  style={{ padding: "10px 15px" }}>
                                 Home

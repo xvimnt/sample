@@ -6,7 +6,7 @@ import Footer from "../components/Sections/Footer"
 import TopMainNavbar from "../components/Nav/TopMainNavbar";
 // Data
 import cartSlice from "../data/cartSlice"
-import {fetchAllProducts } from "../data/productSlice"
+import {getAllProducts } from "../data/productSlice"
 import ChatBot from "../components/Elements/ChatBot";
 
 export default function Catalogue() {
@@ -17,7 +17,7 @@ export default function Catalogue() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchAllProducts())
+    dispatch(getAllProducts())
   }, [dispatch])
 
   return (

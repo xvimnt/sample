@@ -7,8 +7,7 @@ import TopMainNavbar from "../../components/Nav/TopMainNavbar";
 import Table from "../../components/Elements/Table";
 import AdminSidebar from "../../components/Nav/AdminSidebar";
 // Data
-import { fetchAllProducts } from "../../data/productSlice"
-
+import { getAllProducts, addProduct } from "../../data/productSlice"
 
 export default function Products() {
 
@@ -19,7 +18,7 @@ export default function Products() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchAllProducts())
+    dispatch(getAllProducts())
   }, [dispatch])
 
   // States 
@@ -82,7 +81,7 @@ export default function Products() {
       <TopMainNavbar />
       <AdminSidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       <Wrapper>
-        <Table tableName="Productos" rows={products} fields={fields} />
+        {products && <Table tableName="Productos" rows={products} fields={fields} addItem={() => dispatch(addProduct(fields))}/>}
       </Wrapper>
       <Footer />
     </>
