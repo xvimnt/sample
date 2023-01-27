@@ -188,8 +188,8 @@ export default function Home() {
                         <tr>
                           <td>
                             <div className="d-flex align-items-center">
-                              <div className="m-r-10"><a
-                                className="btn btn-circle d-flex btn-info text-white">EA</a>
+                              <div className="m-r-10"><button
+                                className="btn btn-circle d-flex btn-info text-white">EA</button>
                               </div>
                               <div className="">
                                 <h4 className="m-b-0 font-16">Elite Admin</h4>
@@ -210,8 +210,8 @@ export default function Home() {
                         <tr>
                           <td>
                             <div className="d-flex align-items-center">
-                              <div className="m-r-10"><a
-                                className="btn btn-circle d-flex btn-orange text-white">MA</a>
+                              <div className="m-r-10"><button
+                                className="btn btn-circle d-flex btn-orange text-white">MA</button>
                               </div>
                               <div className="">
                                 <h4 className="m-b-0 font-16">Monster Admin</h4>
@@ -232,8 +232,8 @@ export default function Home() {
                         <tr>
                           <td>
                             <div className="d-flex align-items-center">
-                              <div className="m-r-10"><a
-                                className="btn btn-circle d-flex btn-success text-white">MP</a>
+                              <div className="m-r-10"><button
+                                className="btn btn-circle d-flex btn-success text-white">MP</button>
                               </div>
                               <div className="">
                                 <h4 className="m-b-0 font-16">Material Pro Admin</h4>
@@ -254,8 +254,8 @@ export default function Home() {
                         <tr>
                           <td>
                             <div className="d-flex align-items-center">
-                              <div className="m-r-10"><a
-                                className="btn btn-circle d-flex btn-purple text-white">AA</a>
+                              <div className="m-r-10"><button
+                                className="btn btn-circle d-flex btn-purple text-white">AA</button>
                               </div>
                               <div className="">
                                 <h4 className="m-b-0 font-16">Ample Admin</h4>

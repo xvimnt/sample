@@ -4,54 +4,20 @@ AWS.config.update({
   region: "us-east-1"
 });
 
+var tableName = "Products"
+
 var dynamodb = new AWS.DynamoDB();
+var documentClient = new AWS.DynamoDB.DocumentClient();
 
 var params = {
-  TableName: "Products",
+  TableName: tableName,
   KeySchema: [
     // Partition Key
     { AttributeName: "id", KeyType: "HASH" },
-    // Sort Keys
-    { AttributeName: "name", KeyType: "RANGE"}  
   ],
   AttributeDefinitions: [
-    { AttributeName: "id", AttributeType: "S" },
-    { AttributeName: "name", AttributeType: "S" },
-    { AttributeName: "detail", AttributeType: "S" },
-    { AttributeName: "price", AttributeType: "S" },
-    { AttributeName: "imageUrl", AttributeType: "S" }
+    { AttributeName: "id", AttributeType: "N" },
   ],
-  LocalSecondaryIndexes: [
-    {
-      IndexName: "DetailIndex",
-      KeySchema: [
-        { AttributeName: "id", KeyType: "HASH" },
-        { AttributeName: "detail", KeyType: "RANGE" }
-      ],
-      Projection: {
-        ProjectionType: "KEYS_ONLY"
-      }
-    },
-    {
-      IndexName: "PriceIndex",
-      KeySchema: [
-        { AttributeName: "id", KeyType: "HASH" },
-        { AttributeName: "price", KeyType: "RANGE" }
-      ],
-      Projection: {
-        ProjectionType: "KEYS_ONLY"
-      }
-    },{
-      IndexName: "ImageIndex",
-      KeySchema: [
-        { AttributeName: "id", KeyType: "HASH" },
-        { AttributeName: "imageUrl", KeyType: "RANGE" }
-      ],
-      Projection: {
-        ProjectionType: "KEYS_ONLY"
-      }
-    }
-  ], 
   ProvisionedThroughput: {
     ReadCapacityUnits: 10,
     WriteCapacityUnits: 10
@@ -63,4 +29,25 @@ dynamodb.createTable(params, function(err, data) {
     console.error("Unable to create table: ", JSON.stringify(err, null, 2))
   else
     console.log("Created table with description: ", JSON.stringify(data, null, 2))
+
+    // Adding example item to our collection
+    var params = {
+      TableName: tableName,
+      Item: {
+          "id": 1,
+          "name": "First Item",
+          "detail": "First Item Description",
+          "price": 120,
+          "imageUrl": "https://github.com/ebenezerdon/shopping-cart-images/blob/main/robot1.png?raw=true"
+      }
+  };
+
+  console.log("Adding a new item...");
+  documentClient.put(params, function(err, data) {
+      if (err) {
+          console.error("Error JSON:", JSON.stringify(err, null, 2));
+      } else {
+          console.log("Added item successfully!");
+      }
+  });
 });

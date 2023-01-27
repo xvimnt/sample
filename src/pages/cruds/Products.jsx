@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Wrapper } from "../../style/components"
+import ReactLoading from 'react-loading';
+
 // Sections
 import Footer from "../../components/Sections/Footer"
 import TopMainNavbar from "../../components/Nav/TopMainNavbar";
 import Table from "../../components/Elements/Table";
 import AdminSidebar from "../../components/Nav/AdminSidebar";
 // Data
-import { getAllProducts, addProduct } from "../../data/productSlice"
+import { getAllProducts, addProduct, deleteProduct } from "../../data/productSlice"
 
 export default function Products() {
 
@@ -31,7 +33,7 @@ export default function Products() {
   // Controls
   const idControl = () => {
     return (
-      <input className="form-control" type='number' value={id} onChange={(e) => setId(e.target.value)} />
+      <input className="form-control" type='number' value={id} onChange={(e) => setId(parseInt(e.target.value))} />
     )
   }
   const nameControl = () => {
@@ -51,7 +53,7 @@ export default function Products() {
   }
   const priceControl = () => {
     return (
-      <input className="form-control" type='number' value={price} onChange={(e) => setPrice(e.target.value)} />
+      <input className="form-control" type='number' value={price} onChange={(e) => setPrice(parseInt(e.target.value))} />
     )
   }
 
@@ -95,7 +97,22 @@ export default function Products() {
       <TopMainNavbar />
       <AdminSidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       <Wrapper>
-        {products && <Table tableName="Productos" rows={products} fields={fields} addItem={() => dispatch(addProduct(fields))}/>}
+        {products.getStatus === "success" ?
+          (
+            <Table tableName="Productos"
+              rows={products}
+              fields={fields}
+              addItem={() => dispatch(addProduct(fields))}
+              deleteItem={(item) => dispatch(deleteProduct(item))}
+            />
+          ) :
+          (
+            <center>
+              <ReactLoading className="text-center mt-5" type='cylon' color='black' height={125} width={125} />
+            </center>
+          )
+        }
+
       </Wrapper>
       <Footer />
     </>
