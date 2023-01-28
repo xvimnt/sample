@@ -5,7 +5,7 @@ import { MdAddBox, MdDeleteForever, MdModeEdit } from 'react-icons/md'
 import Modal from "./Modal";
 import Checkbox from "../Buttons/Checkbox"
 
-export default function Table({ tableName, rows, fields, addItem, deleteItem }) {
+export default function Table({ tableName, rows, fields, addItem, deleteItem, updateItem }) {
     // Checkbox states
     const [isCheckAll, setIsCheckAll] = useState(false);
     const [isCheck, setIsCheck] = useState([]);
@@ -79,7 +79,7 @@ export default function Table({ tableName, rows, fields, addItem, deleteItem }) 
                             </div>
                         </div>
                     </div>
-                    <Modal id="edit" title={'Edicion de ' + tableName}>
+                    <Modal id="edit" title={'Edicion de ' + tableName} submit={updateItem}>
                         {
                             fields.map(obj => {
                                 return ( 

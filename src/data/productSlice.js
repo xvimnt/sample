@@ -38,11 +38,34 @@ export const addProduct = createAsyncThunk("add-product", async (item) => {
     return response.data
 })
 
+
+export const updateProduct = createAsyncThunk("update-product", async (item) => {
+
+    const newObject = {}
+
+    item.forEach(element => {
+        newObject[element.column] = element.state
+    });
+
+    const response = await axios({
+        url: `/products/${newObject.id}`,
+        baseURL: "https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/Production",
+        method: "put",
+        data: newObject,
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+        },
+    })
+
+    return response.data
+})
+
 export const deleteProduct = createAsyncThunk("delete-product", async (item) => {
 
     const response = await axios({
         url: `/products/${item.id}`,
-        baseURL: "https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/",
+        baseURL: "https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/Production",
         method: "delete",
         headers: {
             'Content-Type': 'application/json',
@@ -87,6 +110,21 @@ const productSlice = createSlice({
             state.deleteStatus = "loading"
         }).addCase(deleteProduct.rejected, (state) => {
             state.deleteStatus = "error"
+        }).addCase(updateProduct.fulfilled, (state, action) => {
+            // update the element from existing table
+            const newObject = {}
+            action.meta.arg.forEach(element => {
+                newObject[element.column] = element.state
+                element.setState('')
+            })
+            // Adding and removing
+            state.data = state.data.filter(el => el.id !== newObject.id)
+            state.data = [...state.data,newObject]
+            state.updateStatus = "success"
+        }).addCase(updateProduct.pending, (state) => {
+            state.updateStatus = "loading"
+        }).addCase(updateProduct.rejected, (state) => {
+            state.updateStatus = "error"
         })
     }
 })

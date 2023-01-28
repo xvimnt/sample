@@ -9,7 +9,7 @@ import TopMainNavbar from "../../components/Nav/TopMainNavbar";
 import Table from "../../components/Elements/Table";
 import AdminSidebar from "../../components/Nav/AdminSidebar";
 // Data
-import { getAllProducts, addProduct, deleteProduct } from "../../data/productSlice"
+import { getAllProducts, addProduct, deleteProduct, updateProduct } from "../../data/productSlice"
 
 export default function Products() {
 
@@ -104,6 +104,7 @@ export default function Products() {
               fields={fields}
               addItem={() => dispatch(addProduct(fields))}
               deleteItem={(item) => dispatch(deleteProduct(item))}
+              updateItem = {() => dispatch(updateProduct(fields))}
             />
           ) :
           (
