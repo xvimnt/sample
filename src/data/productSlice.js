@@ -5,7 +5,7 @@ export const getAllProducts = createAsyncThunk("get-all-products", async () => {
 
     const response = await axios({
         url: "/products",
-        baseURL: "https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/Production",
+        baseURL: "https://dfemzeqgo0.execute-api.us-east-1.amazonaws.com/Production",
         method: "get",
         headers: {
             'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export const addProduct = createAsyncThunk("add-product", async (item) => {
 
     const response = await axios({
         url: "/products",
-        baseURL: "https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/Production",
+        baseURL: "https://dfemzeqgo0.execute-api.us-east-1.amazonaws.com/Production",
         method: "put",
         data: newObject,
         headers: {
@@ -49,7 +49,7 @@ export const updateProduct = createAsyncThunk("update-product", async (item) => 
 
     const response = await axios({
         url: `/products/${newObject.id}`,
-        baseURL: "https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/Production",
+        baseURL: "https://dfemzeqgo0.execute-api.us-east-1.amazonaws.com/Production",
         method: "put",
         data: newObject,
         headers: {
@@ -65,7 +65,7 @@ export const deleteProduct = createAsyncThunk("delete-product", async (item) => 
 
     const response = await axios({
         url: `/products/${item.id}`,
-        baseURL: "https://9e1dpdmq26.execute-api.us-east-1.amazonaws.com/Production",
+        baseURL: "https://dfemzeqgo0.execute-api.us-east-1.amazonaws.com/Production",
         method: "delete",
         headers: {
             'Content-Type': 'application/json',
